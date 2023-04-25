@@ -1,0 +1,29 @@
+name: ci
+
+on:
+  push:
+
+jobs:
+  buildx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Available platforms
+        run: echo ${{ steps.buildx.outputs.platforms }}
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build the image with java 19
+        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg GRAAL_VERSION=22.3.1 --build-arg JAVA_VERSION=19 -t vikmstr/graalce-java19:latest -t vikmstr/graalce-java19:22.3.1 -t vikmstr/graalce-java19:22.3 t vikmstr/graalce-java19:22 -o type=registry .
+      - name: Build the image with java 17
+        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg GRAAL_VERSION=22.3.1 --build-arg JAVA_VERSION=17 -t vikmstr/graalce-java17:latest -t vikmstr/graalce-java17:22.3.1 -t vikmstr/graalce-java17:22.3 t vikmstr/graalce-java17:22 -o type=registry .  
+      - name: Build the image with java 11
+        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg GRAAL_VERSION=22.3.1 --build-arg JAVA_VERSION=11 -t vikmstr/graalce-java11:latest -t vikmstr/graalce-java11:22.3.1 -t vikmstr/graalce-java11:22.3 t vikmstr/graalce-java11:22 -o type=registry .    
