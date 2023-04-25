@@ -22,8 +22,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build the image with java 19
-        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg GRAAL_VERSION=22.3.1 --build-arg JAVA_VERSION=19 -t vikmstr/graalce-java19:latest -t vikmstr/graalce-java19:22.3.1 -t vikmstr/graalce-java19:22.3 t vikmstr/graalce-java19:22 -o type=registry .
+        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg GRAAL_VERSION=22.3.1 --build-arg JAVA_VERSION=19 -t vikmstr/graalce-java19:latest -t vikmstr/graalce-java19:22.3.1 -t vikmstr/graalce-java19:22.3 -t vikmstr/graalce-java19:22 -o type=registry .
       - name: Build the image with java 17
-        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg GRAAL_VERSION=22.3.1 --build-arg JAVA_VERSION=17 -t vikmstr/graalce-java17:latest -t vikmstr/graalce-java17:22.3.1 -t vikmstr/graalce-java17:22.3 t vikmstr/graalce-java17:22 -o type=registry .  
+        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg GRAAL_VERSION=22.3.1 --build-arg JAVA_VERSION=17 -t vikmstr/graalce-java17:latest -t vikmstr/graalce-java17:22.3.1 -t vikmstr/graalce-java17:22.3 -t vikmstr/graalce-java17:22 -o type=registry .  
       - name: Build the image with java 11
-        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg GRAAL_VERSION=22.3.1 --build-arg JAVA_VERSION=11 -t vikmstr/graalce-java11:latest -t vikmstr/graalce-java11:22.3.1 -t vikmstr/graalce-java11:22.3 t vikmstr/graalce-java11:22 -o type=registry .    
+        run: docker buildx build --platform=linux/amd64,linux/arm64 --build-arg GRAAL_VERSION=22.3.1 --build-arg JAVA_VERSION=11 -t vikmstr/graalce-java11:latest -t vikmstr/graalce-java11:22.3.1 -t vikmstr/graalce-java11:22.3 -t vikmstr/graalce-java11:22 -o type=registry .    
